@@ -1,0 +1,14 @@
+span {
+    display: block;
+}
+
+button {
+    display: block;
+}
+
+.mp3 {
+    border-style: solid;
+    border-color: inherit;
+    margin: 10px;
+    width: 300px;
+}
