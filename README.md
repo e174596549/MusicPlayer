@@ -1,5 +1,7 @@
 # MusicPlayer
 
+ ![image](https://raw.githubusercontent.com/e174596549/MusicPlayer/master/musicplayerIMG.jpeg)
+
 ## 1.1版本新增功能
 
 1. 优化代码，增加工具库
