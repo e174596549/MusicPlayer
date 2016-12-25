@@ -3,12 +3,29 @@ span {
 }
 
 button {
+    display: inline-block;
+}
+
+audio {
     display: block;
 }
 
-.mp3 {
-    border-style: solid;
-    border-color: inherit;
-    margin: 10px;
+.mp3-button {
     width: 300px;
+    text-align: center;
+}
+
+.mp3 {
+    width: 300px;
+}
+
+.mp3-list {
+    border-style: solid;
+    border-color: silver;
+    border-width: thin;
+    width: 300px;
+}
+
+.mp3-playing {
+    background-color: silver;
 }

@@ -1,7 +1,7 @@
-var a = document.querySelector('#id-audio-player')
+var a = e('#id-audio-player')
 
 function changeMusic() {
-    var buttonChange = document.querySelector('.mp3-list')
+    let buttonChange = e('.mp3-list')
     buttonChange.addEventListener('click', function(event) {
         a.src = event.target.dataset.path
         buttonChange.dataset.num = event.target.dataset.num
@@ -9,53 +9,128 @@ function changeMusic() {
     })
 }
 
-var canAduioPlay = function() {
-    a.addEventListener('canplay', function() {
+function canAduioPlay() {
+    // a.addEventListener('canplay', function() {
+    //     a.play()
+    //     showPlayTime()
+    // })
+    bindEvent(a, 'canplay', function() {
         a.play()
         showPlayTime()
     })
 }
 
 function showPlayTime() {
-    var currentTime = document.querySelector('#id-apan-currentTime')
-    document.querySelector('#id-apan-totalTime').innerHTML = `总时长：${a.duration}s`
+    let currentTime = e('#id-apan-currentTime')
+    let timeTotal = parseInt(a.duration)
+    let timeCurrent = parseInt(a.currentTime)
+    if (timeTotal > 59) {
+        if (parseInt(a.duration % 60) > 10) {
+            e('#id-apan-totalTime').innerHTML = `总时长：${parseInt(a.duration/60)}:${parseInt(a.duration % 60)}`
+        } else {
+            e('#id-apan-totalTime').innerHTML = `总时长：${parseInt(a.duration/60)}:0${parseInt(a.duration % 60)}`
+        }
+    } else {
+        if (parseInt(a.duration % 60) > 10) {
+            e('#id-apan-totalTime').innerHTML = `总时长：0:${parseInt(a.duration % 60)}`
+        }
+        e('#id-apan-totalTime').innerHTML = `总时长：0:0${parseInt(a.duration % 60)}`
+    }
+
     timer1 = setInterval(function() {
-        currentTime.innerHTML = `已播放：${a.currentTime}s`
+        if (parseInt(a.currentTime) > 59) {
+            if (parseInt(a.currentTime % 60) > 9) {
+                currentTime.innerHTML = `已播放：${parseInt(a.currentTime/60)}:${parseInt(a.currentTime%60)}`
+            } else {
+                currentTime.innerHTML = `已播放：${parseInt(a.currentTime/60)}:0${parseInt(a.currentTime%60)}`
+            }
+        } else {
+            if (a.currentTime > 9) {
+                currentTime.innerHTML = `已播放：0:${parseInt(a.currentTime)}`
+            } else {
+                currentTime.innerHTML = `已播放：0:0${parseInt(a.currentTime)}`
+            }
+        }
     }, 1000)
 }
 
 function pauseButton() {
-    var buttonPause = document.querySelector('#id-button-pause')
-    buttonPause.addEventListener('click', function() {
+    let buttonPause = e('#id-button-pause')
+        // buttonPause.addEventListener('click', function() {
+        //     a.pause()
+        //     clearInterval(timer1)
+        // })
+    bindEvent(buttonPause, 'click', function() {
         a.pause()
         clearInterval(timer1)
     })
 }
 
 function playButton() {
-    var buttonPlay = document.querySelector('#id-button-play')
-    buttonPlay.addEventListener('click', function() {
+    let buttonPlay = e('#id-button-play')
+        // buttonPlay.addEventListener('click', function() {
+        //     a.play()
+        //     showPlayTime()
+        // })
+    bindEvent(buttonPlay, 'click', function() {
         a.play()
         showPlayTime()
     })
 }
 
 function nextMusic() {
-    var musicList = ['GARNiDELiA - 極楽浄土 (加速版).mp3', '周杰伦 - 给我一首歌的时间.mp3', '朴树 - 那些花儿(吉他版).mp3']
-    nextButton = document.querySelector('#id-button-next')
-    nextButton.addEventListener('click', function() {
-        console.log(document.querySelector('.mp3-list').dataset.num);
-        var i = document.querySelector('.mp3-list').dataset.num
+    let musicList = ['GARNiDELiA - 極楽浄土 (加速版).mp3', '周杰伦 - 给我一首歌的时间.mp3', '朴树 - 那些花儿(吉他版).mp3']
+    nextButton = e('#id-button-next')
+        // nextButton.addEventListener('click', function() {
+        //     console.log(e('.mp3-list').dataset.num);
+        //     let i = e('.mp3-list').dataset.num
+        //     a.src = musicList[(i + 1) % 3]
+        //     e('.mp3-list').dataset.num = (i + 1) % 3
+        //     canAduioPlay()
+        // })
+    bindEvent(nextButton, 'click', function() {
+        console.log(e('.mp3-list').dataset.num);
+        let i = e('.mp3-list').dataset.num
         a.src = musicList[(i + 1) % 3]
-        document.querySelector('.mp3-list').dataset.num = (i + 1) % 3
+        e('.mp3-list').dataset.num = (i + 1) % 3
         canAduioPlay()
     })
 }
 
 function autoNext() {
-    a.addEventListener('ended', function() {
+    // a.addEventListener('ended', function() {
+    //     console.log('autoNext')
+    //     nextButton.click()
+    // })
+    bindEvent(a, 'ended', function() {
         console.log('autoNext')
         nextButton.click()
+    })
+}
+
+function changeBackColor() {
+    //let mp3 = e('.mp3-list')
+    //log('changeBackColor', `musicList = ${musicList}`)
+    bindAll('.mp3', 'mouseenter', function(event) {
+        log('changeBackColor', `event.target = ${event.target}`)
+        removeClassAll('mp3-playing')
+        toggleClass(event.target, 'mp3-playing')
+    })
+}
+
+function keepBackColor() {
+    let mp3List = e('.mp3-list')
+    let mp3Button = eAll('.mp3')
+    log('keepBackColor', `mp3List.dataset.num = ${mp3List.dataset.num}`)
+    bindEvent(mp3List, 'mouseout', function() {
+        for (var i = 0; i < mp3Button.length; i++) {
+            //log('keepBackColor', `mp3Button[${i}] = ${mp3Button[i]}`)
+            if (i == mp3List.dataset.num) {
+                log('keepBackColor', `i = ${i}`)
+                removeClassAll('mp3-playing')
+                mp3Button[i].classList.add('mp3-playing')
+            }
+        }
     })
 }
 
@@ -65,6 +140,8 @@ function main() {
     playButton()
     nextMusic()
     autoNext()
+    changeBackColor()
+    keepBackColor()
 }
 
 main()

@@ -4,10 +4,11 @@
         <meta charset="utf-8">
         <title>musicPlayer</title>
         <link rel="stylesheet" href="style.css">
+        <script src="util.js"></script>
     </head>
     <body>
         <div class="mp3-list" data-num=0>
-            <div class="mp3" data-path='GARNiDELiA - 極楽浄土 (加速版).mp3' data-num=0>
+            <div class="mp3 mp3-playing" data-path='GARNiDELiA - 極楽浄土 (加速版).mp3' data-num=0>
                 GARNiDELiA - 極楽浄土 (加速版)
             </div>
             <div class="mp3" data-path='周杰伦 - 给我一首歌的时间.mp3' data-num=1>
@@ -20,9 +21,11 @@
         <audio id='id-audio-player' controls="controls">
             <source src="GARNiDELiA - 極楽浄土 (加速版).mp3">
         </audio >
-        <button type="button" id="id-button-pause">pause</button>
-        <button type="button" id="id-button-play">play</button>
-        <button type="button" id="id-button-next">next</button>
+        <div class="mp3-button">
+            <button type="button" id="id-button-play">play</button>
+            <button type="button" id="id-button-pause">pause</button>
+            <button type="button" id="id-button-next">next</button>
+        </div>
         <span id="id-apan-currentTime">当前时间：</span>
         <span id="id-apan-totalTime">总时间：</span>
         <script src=musicPlayer.js></script>
