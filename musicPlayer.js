@@ -1,11 +1,12 @@
 var a = e('#id-audio-player')
-
+    //
 function changeMusic() {
     let buttonChange = e('.mp3-list')
     buttonChange.addEventListener('click', function(event) {
         a.src = event.target.dataset.path
         buttonChange.dataset.num = event.target.dataset.num
         canAduioPlay()
+        refresh()
     })
 }
 
@@ -94,6 +95,8 @@ function nextMusic() {
         a.src = musicList[(i + 1) % 3]
         e('.mp3-list').dataset.num = (i + 1) % 3
         canAduioPlay()
+        refresh()
+        showPage('playingPage')
     })
 }
 
@@ -134,6 +137,107 @@ function keepBackColor() {
     })
 }
 
+function refresh() {
+    var musicPicture = eAll('.mp3-picture')
+    let mp3List = e('.mp3-list')
+    let mp3Button = eAll('.mp3')
+    for (var i = 0; i < mp3Button.length; i++) {
+        if (i == mp3List.dataset.num) {
+            removeClassAll('mp3-playing')
+            mp3Button[i].classList.add('mp3-playing')
+        }
+    }
+    for (var i = 0; i < musicPicture.length; i++) {
+        log('musicPicture', musicPicture[i])
+        if (musicPicture[i].classList.contains('playingPage')) {
+            musicPicture[i].classList.remove('playingPage')
+        }
+        if (i == mp3List.dataset.num) {
+            log('i == event.target.dataset.num')
+            musicPicture[i].classList.add('playingPage')
+        }
+    }
+}
+
+function showPage(className) {
+    var pages = eAll('.mp3-page')
+    log('pages', pages)
+    for (var i = 0; i < pages.length; i++) {
+        let page = pages[i]
+        page.classList.add('mp3-hide')
+    }
+    // 给 todo-new 删掉 gua-hide
+    var selector = '.' + className
+    var todonewDiv = eAll(selector)
+    for (var i = 0; i < todonewDiv.length; i++) {
+        todonewDiv[i].classList.remove('mp3-hide')
+    }
+    // todonewDiv.classList.remove('mp3-hide')
+    // 如果是 todolist 界面， 需要刷新
+    // if (className == 'todo-list') {
+    //     showTodoList()
+    // }
+    // if (className == 'todo-edit') {
+    //     showTodoEdit()
+    // }
+}
+
+function changePage() {
+    let button = e('.page')
+    bindEvent(button, 'click', function(event) {
+        let className = event.target.name.split('-')[1]
+        showPage(className)
+        log(event.target.name)
+        pushState(className)
+    })
+
+    window.addEventListener("popstate", function(e) {
+        var state = e.state;
+        // state 就是 pushState 的第一个参数
+        var pageName = state.page
+        log('pop state', state, pageName)
+        showPage(pageName)
+            // pushState(pageName)
+        document.title = pageName.split('-')[1]
+    })
+}
+
+var pushState = function(className) {
+    // 切换地址栏信息
+    // todo-new todo-list
+    var pageName = className
+    var url = 'index.html?page=' + pageName
+    var state = {
+        page: className
+    }
+    history.pushState(state, 'title', url)
+        // 手动设置 title
+    document.title = pageName
+}
+
+var initApp = function() {
+    // 根据地址栏的参数来显示不同的页面
+    var query = location.search
+    var [k,
+        v
+    ] = query.slice(1).split('=')
+    log('query = ', query)
+    log('k = ', k)
+    log('v = ', v)
+        // 让 page 初始化为 list
+    var page = 'ListPage'
+        // 设置一个 合法的 page 参数集合
+    var validPages = ['ListPage', 'playingPage']
+    if (k == 'page') {
+        if (validPages.includes(v)) {
+            page = v
+        }
+    }
+    // ["page", "list"]
+    var pageName = page
+    showPage(pageName)
+}
+
 function main() {
     changeMusic()
     pauseButton()
@@ -142,6 +246,8 @@ function main() {
     autoNext()
     changeBackColor()
     keepBackColor()
+    changePage()
+    initApp()
 }
 
 main()

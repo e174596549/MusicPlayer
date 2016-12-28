@@ -7,27 +7,40 @@
         <script src="util.js"></script>
     </head>
     <body>
-        <div class="mp3-list" data-num=0>
-            <div class="mp3 mp3-playing" data-path='GARNiDELiA - 極楽浄土 (加速版).mp3' data-num=0>
-                GARNiDELiA - 極楽浄土 (加速版)
+        <div class="All">
+            <div class="page">
+                <button type="button" name="button-ListPage">歌曲列表</button>
+                <button type="button" name="button-playingPage">播放中</button>
             </div>
-            <div class="mp3" data-path='周杰伦 - 给我一首歌的时间.mp3' data-num=1>
-                周杰伦 - 给我一首歌的时间
+            <div class="mp3-page mp3-list ListPage" data-num=0>
+                <div class="mp3 mp3-playing" data-path='GARNiDELiA - 極楽浄土 (加速版).mp3' data-num=0>
+                    GARNiDELiA - 極楽浄土 (加速版)
+                </div>
+                <div class="mp3" data-path='周杰伦 - 给我一首歌的时间.mp3' data-num=1>
+                    周杰伦 - 给我一首歌的时间
+                </div>
+                <div class="mp3" data-path='朴树 - 那些花儿(吉他版).mp3' data-num=2>
+                    朴树 - 那些花儿(吉他版)
+                </div>
             </div>
-            <div class="mp3" data-path='朴树 - 那些花儿(吉他版).mp3' data-num=2>
-                朴树 - 那些花儿(吉他版)
+            <div class="mp3-page mp3-button playingPage">
+                <button type="button" id="id-button-play">play</button>
+                <button type="button" id="id-button-pause">pause</button>
+                <button type="button" id="id-button-next">next</button>
             </div>
+            <div class="mp3-page playingPage">
+                <img src="0.jpg" alt="" class='mp3-page mp3-picture picture-size playingPage'>
+                <img src="1.jpg" alt="" class='mp3-page mp3-picture picture-size'>
+                <img src="2.jpeg" alt="" class='mp3-page mp3-picture picture-size'>
+            </div>
+            <div class="mp3-page time playingPage">
+                <span id="id-apan-currentTime">当前时间：</span>
+                <span id="id-apan-totalTime">总时间：</span>
+            </div>
+            <audio id='id-audio-player' controls="controls" class="mp3-page ListPage">
+                <source src="GARNiDELiA - 極楽浄土 (加速版).mp3">
+            </audio >
         </div>
-        <audio id='id-audio-player' controls="controls">
-            <source src="GARNiDELiA - 極楽浄土 (加速版).mp3">
-        </audio >
-        <div class="mp3-button">
-            <button type="button" id="id-button-play">play</button>
-            <button type="button" id="id-button-pause">pause</button>
-            <button type="button" id="id-button-next">next</button>
-        </div>
-        <span id="id-apan-currentTime">当前时间：</span>
-        <span id="id-apan-totalTime">总时间：</span>
         <script src=musicPlayer.js></script>
     </body>
 </html>

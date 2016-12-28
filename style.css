@@ -7,7 +7,16 @@ button {
 }
 
 audio {
+    margin: 0 auto;
     display: block;
+}
+
+.All {
+    margin: 20px;
+    border-color: grey;
+    border-style: solid;
+    position: fixed;
+    text-align: center;
 }
 
 .mp3-button {
@@ -20,12 +29,23 @@ audio {
 }
 
 .mp3-list {
+    margin: 5px;
     border-style: solid;
     border-color: silver;
     border-width: thin;
     width: 300px;
+    text-align: center;
 }
 
 .mp3-playing {
     background-color: silver;
+}
+
+.mp3-hide {
+    display: none;
+}
+
+.picture-size {
+    width: 100px;
+    height: 70px;
 }
