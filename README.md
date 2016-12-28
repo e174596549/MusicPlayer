@@ -2,6 +2,12 @@
 
  ![image](https://raw.githubusercontent.com/e174596549/MusicPlayer/master/musicplayerIMG.jpeg)
 
+## 1.2版本新增功能
+
+1. 增加单页应用功能
+2. 优化ui布局
+3. 修复单击next按钮后播放中歌曲高亮状态不改变的bug
+
 ## 1.1版本新增功能
 
 1. 优化代码，增加工具库
