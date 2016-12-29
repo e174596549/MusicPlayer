@@ -17,6 +17,7 @@ function canAduioPlay() {
     // })
     bindEvent(a, 'canplay', function() {
         a.play()
+        rotatePicture()
         showPlayTime()
     })
 }
@@ -63,6 +64,7 @@ function pauseButton() {
         // })
     bindEvent(buttonPause, 'click', function() {
         a.pause()
+        removeClassAll('picture-rotate')
         clearInterval(timer1)
     })
 }
@@ -75,6 +77,7 @@ function playButton() {
         // })
     bindEvent(buttonPlay, 'click', function() {
         a.play()
+        rotatePicture()
         showPlayTime()
     })
 }
@@ -216,26 +219,39 @@ var pushState = function(className) {
 }
 
 var initApp = function() {
-    // 根据地址栏的参数来显示不同的页面
-    var query = location.search
-    var [k,
-        v
-    ] = query.slice(1).split('=')
-    log('query = ', query)
-    log('k = ', k)
-    log('v = ', v)
-        // 让 page 初始化为 list
-    var page = 'ListPage'
-        // 设置一个 合法的 page 参数集合
-    var validPages = ['ListPage', 'playingPage']
-    if (k == 'page') {
-        if (validPages.includes(v)) {
-            page = v
+        // 根据地址栏的参数来显示不同的页面
+        var query = location.search
+        var [k,
+            v
+        ] = query.slice(1).split('=')
+        log('query = ', query)
+        log('k = ', k)
+        log('v = ', v)
+            // 让 page 初始化为 list
+        var page = 'ListPage'
+            // 设置一个 合法的 page 参数集合
+        var validPages = ['ListPage', 'playingPage']
+        if (k == 'page') {
+            if (validPages.includes(v)) {
+                page = v
+            }
+        }
+        // ["page", "list"]
+        var pageName = page
+        showPage(pageName)
+    }
+    //转动唱片
+function rotatePicture() {
+    //picture - rotate
+    let picture = eAll('img')
+    log('rotatePicture', picture)
+    for (var i = 0; i < picture.length; i++) {
+        if (picture[i].classList.contains('playingPage')) {
+            console.log(`picture[${i}].classList.contains('playingPage')`);
+            removeClassAll('picture-rotate')
+            picture[i].classList.add('picture-rotate')
         }
     }
-    // ["page", "list"]
-    var pageName = page
-    showPage(pageName)
 }
 
 function main() {
