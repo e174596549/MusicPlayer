@@ -1,6 +1,10 @@
 # MusicPlayer
 
- ![image](https://raw.githubusercontent.com/e174596549/MusicPlayer/master/musicplayerIMG.jpeg)
+![image](https://raw.githubusercontent.com/e174596549/MusicPlayer/master/musicplayer.gif)
+
+## 1.3版本新增功能
+
+1. 唱片播放旋转动画效果
 
 ## 1.2版本新增功能
 
