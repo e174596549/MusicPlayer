@@ -2,6 +2,11 @@
 
 ![image](https://raw.githubusercontent.com/e174596549/MusicPlayer/master/musicplayer.gif)
 
+## 1.4版本新增功能
+
+1. 实现手机屏幕普遍适配
+2. 优化歌曲列表相关布局代码
+
 ## 1.3版本新增功能
 
 1. 唱片播放旋转动画效果
