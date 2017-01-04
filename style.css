@@ -12,20 +12,20 @@ audio {
 }
 
 .All {
-    margin: 20px;
+    /*margin: 20px;*/
     border-color: grey;
     border-style: solid;
-    position: fixed;
+    /*position: fixed;*/
     text-align: center;
 }
 
 .mp3-button {
-    width: 300px;
+    /*width: 300px;*/
     text-align: center;
 }
 
 .mp3 {
-    width: 300px;
+    /*width: 300px;*/
 }
 
 .mp3-list {
@@ -33,8 +33,9 @@ audio {
     border-style: solid;
     border-color: silver;
     border-width: thin;
-    width: 300px;
+    /*width: 300px;*/
     text-align: center;
+    margin: 0 auto;
 }
 
 .mp3-playing {
