@@ -2,6 +2,10 @@
 
 ![image](https://raw.githubusercontent.com/e174596549/MusicPlayer/master/musicplayer.gif)
 
+## 1.5版本新增功能
+
+1. 增加播放进度条实时显示
+
 ## 1.4版本新增功能
 
 1. 实现手机屏幕普遍适配

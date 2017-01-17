@@ -15,10 +15,19 @@ function canAduioPlay() {
     //     a.play()
     //     showPlayTime()
     // })
+    let buttonPlay = e('#id-button-play')
+    let buttonPause = e('#id-button-pause')
     bindEvent(a, 'canplay', function() {
         a.play()
         rotatePicture()
         showPlayTime()
+        if (!(window.timer2 === undefined)) {
+            console.log('timer2');
+            clearInterval(timer2)
+        }
+        progressBarShow()
+        buttonPlay.classList.add('hide')
+        buttonPause.classList.remove('hide')
     })
 }
 
@@ -56,7 +65,21 @@ function showPlayTime() {
     }, 1000)
 }
 
+function progressBarShow() {
+    console.log(``);
+    timer2 = setInterval(() => {
+        let mDuration = parseInt(a.duration)
+        let mCurrentTime = parseInt(a.currentTime)
+        console.log('progressBarShow', parseInt(100 * (mCurrentTime / mDuration)))
+        let progressBar = e('.img-progress-bar')
+        progressBar.style.width = parseInt(100 * (mCurrentTime / mDuration)) + "%"
+        console.log('progressBar', `progressBar.style = ${progressBar.style.width}`)
+    }, 1000)
+
+}
+
 function pauseButton() {
+    let buttonPlay = e('#id-button-play')
     let buttonPause = e('#id-button-pause')
         // buttonPause.addEventListener('click', function() {
         //     a.pause()
@@ -66,11 +89,15 @@ function pauseButton() {
         a.pause()
         removeClassAll('picture-rotate')
         clearInterval(timer1)
+        buttonPlay.classList.remove('hide')
+        buttonPause.classList.add('hide')
+        clearInterval(timer2)
     })
 }
 
 function playButton() {
     let buttonPlay = e('#id-button-play')
+    let buttonPause = e('#id-button-pause')
         // buttonPlay.addEventListener('click', function() {
         //     a.play()
         //     showPlayTime()
@@ -79,6 +106,9 @@ function playButton() {
         a.play()
         rotatePicture()
         showPlayTime()
+        buttonPlay.classList.add('hide')
+        buttonPause.classList.remove('hide')
+        progressBarShow()
     })
 }
 
@@ -97,6 +127,24 @@ function nextMusic() {
         let i = e('.mp3-list').dataset.num
         a.src = musicList[(i + 1) % 3]
         e('.mp3-list').dataset.num = (i + 1) % 3
+        canAduioPlay()
+        refresh()
+        showPage('playingPage')
+    })
+    nextPrt = e('#id-button-pre')
+    bindEvent(nextPrt, 'click', function() {
+        console.log(e('.mp3-list').dataset.num);
+        let i = e('.mp3-list').dataset.num
+        if ((i - 1) < 0) {
+            a.src = musicList[2]
+            e('.mp3-list').dataset.num = 2
+
+        } else {
+            a.src = musicList[(i - 1) % 3]
+            e('.mp3-list').dataset.num = (i - 1) % 3
+        }
+
+
         canAduioPlay()
         refresh()
         showPage('playingPage')
@@ -243,7 +291,7 @@ var initApp = function() {
     //转动唱片
 function rotatePicture() {
     //picture - rotate
-    let picture = eAll('img')
+    let picture = eAll('.mp3-picture')
     log('rotatePicture', picture)
     for (var i = 0; i < picture.length; i++) {
         if (picture[i].classList.contains('playingPage')) {
