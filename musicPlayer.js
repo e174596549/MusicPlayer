@@ -1,5 +1,5 @@
 var a = e('#id-audio-player')
-    //
+//
 function changeMusic() {
     let buttonChange = e('.mp3-list')
     buttonChange.addEventListener('click', function(event) {
@@ -37,29 +37,29 @@ function showPlayTime() {
     let timeCurrent = parseInt(a.currentTime)
     if (timeTotal > 59) {
         if (parseInt(a.duration % 60) > 10) {
-            e('#id-apan-totalTime').innerHTML = `总时长：${parseInt(a.duration/60)}:${parseInt(a.duration % 60)}`
+            e('#id-apan-totalTime').innerHTML = `${parseInt(a.duration/60)}:${parseInt(a.duration % 60)}`
         } else {
-            e('#id-apan-totalTime').innerHTML = `总时长：${parseInt(a.duration/60)}:0${parseInt(a.duration % 60)}`
+            e('#id-apan-totalTime').innerHTML = `${parseInt(a.duration/60)}:0${parseInt(a.duration % 60)}`
         }
     } else {
         if (parseInt(a.duration % 60) > 10) {
-            e('#id-apan-totalTime').innerHTML = `总时长：0:${parseInt(a.duration % 60)}`
+            e('#id-apan-totalTime').innerHTML = `0:${parseInt(a.duration % 60)}`
         }
-        e('#id-apan-totalTime').innerHTML = `总时长：0:0${parseInt(a.duration % 60)}`
+        e('#id-apan-totalTime').innerHTML = `0:0${parseInt(a.duration % 60)}`
     }
 
     timer1 = setInterval(function() {
         if (parseInt(a.currentTime) > 59) {
             if (parseInt(a.currentTime % 60) > 9) {
-                currentTime.innerHTML = `已播放：${parseInt(a.currentTime/60)}:${parseInt(a.currentTime%60)}`
+                currentTime.innerHTML = `${parseInt(a.currentTime/60)}:${parseInt(a.currentTime%60)}`
             } else {
-                currentTime.innerHTML = `已播放：${parseInt(a.currentTime/60)}:0${parseInt(a.currentTime%60)}`
+                currentTime.innerHTML = `${parseInt(a.currentTime/60)}:0${parseInt(a.currentTime%60)}`
             }
         } else {
             if (a.currentTime > 9) {
-                currentTime.innerHTML = `已播放：0:${parseInt(a.currentTime)}`
+                currentTime.innerHTML = `0:${parseInt(a.currentTime)}`
             } else {
-                currentTime.innerHTML = `已播放：0:0${parseInt(a.currentTime)}`
+                currentTime.innerHTML = `0:0${parseInt(a.currentTime)}`
             }
         }
     }, 1000)
@@ -81,10 +81,10 @@ function progressBarShow() {
 function pauseButton() {
     let buttonPlay = e('#id-button-play')
     let buttonPause = e('#id-button-pause')
-        // buttonPause.addEventListener('click', function() {
-        //     a.pause()
-        //     clearInterval(timer1)
-        // })
+    // buttonPause.addEventListener('click', function() {
+    //     a.pause()
+    //     clearInterval(timer1)
+    // })
     bindEvent(buttonPause, 'click', function() {
         a.pause()
         removeClassAll('picture-rotate')
@@ -98,10 +98,10 @@ function pauseButton() {
 function playButton() {
     let buttonPlay = e('#id-button-play')
     let buttonPause = e('#id-button-pause')
-        // buttonPlay.addEventListener('click', function() {
-        //     a.play()
-        //     showPlayTime()
-        // })
+    // buttonPlay.addEventListener('click', function() {
+    //     a.play()
+    //     showPlayTime()
+    // })
     bindEvent(buttonPlay, 'click', function() {
         a.play()
         rotatePicture()
@@ -115,13 +115,13 @@ function playButton() {
 function nextMusic() {
     let musicList = ['GARNiDELiA - 極楽浄土 (加速版).mp3', '周杰伦 - 给我一首歌的时间.mp3', '朴树 - 那些花儿(吉他版).mp3']
     nextButton = e('#id-button-next')
-        // nextButton.addEventListener('click', function() {
-        //     console.log(e('.mp3-list').dataset.num);
-        //     let i = e('.mp3-list').dataset.num
-        //     a.src = musicList[(i + 1) % 3]
-        //     e('.mp3-list').dataset.num = (i + 1) % 3
-        //     canAduioPlay()
-        // })
+    // nextButton.addEventListener('click', function() {
+    //     console.log(e('.mp3-list').dataset.num);
+    //     let i = e('.mp3-list').dataset.num
+    //     a.src = musicList[(i + 1) % 3]
+    //     e('.mp3-list').dataset.num = (i + 1) % 3
+    //     canAduioPlay()
+    // })
     bindEvent(nextButton, 'click', function() {
         console.log(e('.mp3-list').dataset.num);
         let i = e('.mp3-list').dataset.num
@@ -248,7 +248,7 @@ function changePage() {
         var pageName = state.page
         log('pop state', state, pageName)
         showPage(pageName)
-            // pushState(pageName)
+        // pushState(pageName)
         document.title = pageName.split('-')[1]
     })
 }
@@ -262,33 +262,33 @@ var pushState = function(className) {
         page: className
     }
     history.pushState(state, 'title', url)
-        // 手动设置 title
+    // 手动设置 title
     document.title = pageName
 }
 
 var initApp = function() {
-        // 根据地址栏的参数来显示不同的页面
-        var query = location.search
-        var [k,
-            v
-        ] = query.slice(1).split('=')
-        log('query = ', query)
-        log('k = ', k)
-        log('v = ', v)
-            // 让 page 初始化为 list
-        var page = 'ListPage'
-            // 设置一个 合法的 page 参数集合
-        var validPages = ['ListPage', 'playingPage']
-        if (k == 'page') {
-            if (validPages.includes(v)) {
-                page = v
-            }
+    // 根据地址栏的参数来显示不同的页面
+    var query = location.search
+    var [k,
+        v
+    ] = query.slice(1).split('=')
+    log('query = ', query)
+    log('k = ', k)
+    log('v = ', v)
+    // 让 page 初始化为 list
+    var page = 'ListPage'
+    // 设置一个 合法的 page 参数集合
+    var validPages = ['ListPage', 'playingPage']
+    if (k == 'page') {
+        if (validPages.includes(v)) {
+            page = v
         }
-        // ["page", "list"]
-        var pageName = page
-        showPage(pageName)
     }
-    //转动唱片
+    // ["page", "list"]
+    var pageName = page
+    showPage(pageName)
+}
+//转动唱片
 function rotatePicture() {
     //picture - rotate
     let picture = eAll('.mp3-picture')

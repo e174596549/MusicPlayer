@@ -9,37 +9,42 @@
     </head>
     <body>
         <div class="All">
-            <div class="page">
-                <button type="button" name="button-ListPage">歌曲列表</button>
-                <button type="button" name="button-playingPage">播放中</button>
-            </div>
-
-            <div class="mp3-page mp3-list ListPage" data-num=0>
-                <div class="mp3 mp3-playing" data-path='GARNiDELiA - 極楽浄土 (加速版).mp3' data-num=0>
-                    GARNiDELiA - 極楽浄土 (加速版)
+            <div class="palyer-main">
+                <div class="page">
+                    <img type="button" name="button-ListPage" class="button-List" src="Music_player_left.png">
+                    <img type="button" name="button-playingPage" class="button-playing" src="Music_player_right.png">
                 </div>
-                <div class="mp3" data-path='周杰伦 - 给我一首歌的时间.mp3' data-num=1>
-                    周杰伦 - 给我一首歌的时间
+                <div class="mp3-list-location">
+                    <div class="mp3-page mp3-list ListPage" data-num=0>
+                        <div class="mp3 mp3-playing" data-path='GARNiDELiA - 極楽浄土 (加速版).mp3' data-num=0>
+                            GARNiDELiA - 極楽浄土 (加速版)
+                        </div>
+                        <div class="mp3" data-path='周杰伦 - 给我一首歌的时间.mp3' data-num=1>
+                            周杰伦 - 给我一首歌的时间
+                        </div>
+                        <div class="mp3" data-path='朴树 - 那些花儿(吉他版).mp3' data-num=2>
+                            朴树 - 那些花儿(吉他版)
+                        </div>
+                    </div>
                 </div>
-                <div class="mp3" data-path='朴树 - 那些花儿(吉他版).mp3' data-num=2>
-                    朴树 - 那些花儿(吉他版)
+                <div class="mp3-page playingPage mp3-location">
+                    <img src="0.jpg" alt="" class='mp3-page mp3-picture picture-size playingPage'>
+                    <img src="1.jpg" alt="" class='mp3-page mp3-picture picture-size'>
+                    <img src="2.jpeg" alt="" class='mp3-page mp3-picture picture-size'>
                 </div>
-            </div>
-            <div class="mp3-page playingPage">
-                <img src="0.jpg" alt="" class='mp3-page mp3-picture picture-size playingPage'>
-                <img src="1.jpg" alt="" class='mp3-page mp3-picture picture-size'>
-                <img src="2.jpeg" alt="" class='mp3-page mp3-picture picture-size'>
-            </div>
-            <div class="mp3-page time playingPage">
-                <span id="id-apan-currentTime">当前时间：</span>
-                <span id="id-apan-totalTime">总时间：</span>
-            </div>
-            <img class="img-progress-bar" id="id-progress-bar" src="进度条.png">
-            <div class="mp3-page mp3-button playingPage">
-                <img class="button img-button" id="id-button-pre" src="上一首.png">
-                <img class="button img-button" id="id-button-play" src='播放.png'>
-                <img class="button img-button hide" id="id-button-pause" src="暂停.png">
-                <img class="button img-button" id="id-button-next" src="下一首.png">
+                <div class="mp3-page time playingPage">
+                    <span id="id-apan-currentTime" class="currentTime">00:00</span>
+                    <span id="id-apan-totalTime" class="totalTime">00:00</span>
+                </div>
+                <div class="bar">
+                    <img class="img-progress-bar" id="id-progress-bar" src="Music_player_jindu.png">
+                </div>
+                <div class="mp3-page mp3-button playingPage">
+                    <img class="button img-button" id="id-button-pre" src="Music_player_back_.png">
+                    <img class="button img-button" id="id-button-play" src='Music_player_play.png'>
+                    <img class="button img-button hide" id="id-button-pause" src="Music_player_play.png">
+                    <img class="button img-button" id="id-button-next" src="Music_player_forward.png">
+                </div>
             </div>
         </div>
         <audio id='id-audio-player' controls="controls" class="mp3-page ListPage" style="display: none;">
