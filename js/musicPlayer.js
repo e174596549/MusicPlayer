@@ -217,7 +217,7 @@ function showPage(className) {
         let page = pages[i]
         page.classList.add('mp3-hide')
     }
-    // 给 todo-new 删掉 gua-hide
+
     var selector = '.' + className
     var todonewDiv = eAll(selector)
     for (var i = 0; i < todonewDiv.length; i++) {
